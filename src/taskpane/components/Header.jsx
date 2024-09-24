@@ -1,18 +1,24 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import { Image, tokens, makeStyles } from "@fluentui/react-components";
 
 const useStyles = makeStyles({
   welcome__header: {
+    width: "100%",
     display: "flex",
-    flexDirection: "column",
+    marginBottom: "1rem",
+    gap: "1rem",
+    
+  },
+  verticalAlign: {
     alignItems: "center",
-    paddingBottom: "30px",
-    paddingTop: "100px",
-    backgroundColor: tokens.colorNeutralBackground3,
+    justifyContent: "space-between",
+  },
+  horizontalAlign: {
+    justifyContent: "center",
   },
   message: {
-    fontSize: tokens.fontSizeHero900,
+    fontSize: tokens.fontSizeBase700,
+    letterSpacing: "2px",
     fontWeight: tokens.fontWeightRegular,
     fontColor: tokens.colorNeutralBackgroundStatic,
   },
@@ -23,17 +29,12 @@ const Header = (props) => {
   const styles = useStyles();
 
   return (
-    <section className={styles.welcome__header}>
-      <Image width="90" height="90" src={logo} alt={title} />
-      <h1 className={styles.message}>{message}</h1>
+    <section className={`${styles.welcome__header} ${props.user ? styles.verticalAlign : styles.horizontalAlign}`}>
+      <Image width="64" height="64" src={logo} alt={title} />
+
+      {props.user && <h5 className={styles.message}>{props.user.email}</h5>}
     </section>
   );
-};
-
-Header.propTypes = {
-  title: PropTypes.string,
-  logo: PropTypes.string,
-  message: PropTypes.string,
 };
 
 export default Header;
