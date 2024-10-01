@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { makeStyles, Button, Text, Stack, tokens } from "@fluentui/react-components";
+/* eslint-disable no-undef */
+import React, { useState } from "react";
+import { makeStyles, Button, tokens } from "@fluentui/react-components";
 import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/google";
-import {jwtDecode} from "jwt-decode"; // Correct import
+import { jwtDecode } from "jwt-decode"; // Correct import
 import Home from "./Home";
 import Header from "./Header";
 
@@ -36,7 +37,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    gap:"5px",
+    gap: "5px",
     backgroundColor: "#ffffff", // White background for login area
     padding: "2rem",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -68,7 +69,6 @@ const App = () => {
     setAuthToken(token);
     setUser(decodedUser);
     setIsHomePage(true); // Navigate to home after login
-    console.log(decodedUser);
   };
 
   // Handle login failure
@@ -82,15 +82,11 @@ const App = () => {
     setAuthToken(null); // Clear the auth token
     setUser(null); // Clear the user state
     setIsHomePage(false); // Go back to login page after logout
-    console.log("User logged out");
   };
 
   return (
     <div className={styles.root}>
-      <Header
-        logo="../../../assets/optimus-logo-01.png"
-        user={user ? user : null}
-      />
+      <Header logo="../../../assets/optimus-logo-01.png" user={user ? user : null} />
       {authToken && (
         <div className={styles.topBar}>
           {user && (
@@ -104,11 +100,7 @@ const App = () => {
                 alt="User Avatar"
                 className={styles.userImage}
               />
-              <Button
-                appearance="primary"
-                shape="circular"
-                onClick={logoutHandler}
-              >
+              <Button appearance="primary" shape="circular" onClick={logoutHandler}>
                 Logout
               </Button>
             </>
